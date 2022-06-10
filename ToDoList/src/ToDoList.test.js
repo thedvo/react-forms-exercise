@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import ToDoList from './ToDoList';
 
 // mimic the add task function when form is submitted
@@ -30,12 +31,12 @@ it('matches snapshot', function() {
 
 // test adding a todo
 it('can add a todo', function() {
-	const list = render(<TodoList />);
+	const list = render(<ToDoList />);
 	addTask(list);
 	// runs addTask function defined above
 
 	// expect form to clear and todo to be on the page
-	expect(list.getByLabelText('Task: ')).toHaveValue('');
+	expect(list.getByLabelText('Task:')).toHaveValue('');
 	// should see the value we added to addTask function defined above
 	expect(list.getByText('this is a test')).toBeInTheDocument();
 	// should also see the edit and remove buttons for this task
@@ -45,7 +46,7 @@ it('can add a todo', function() {
 
 // test updating a todo
 it('can edit a todo', function() {
-	const list = render(<TodoList />);
+	const list = render(<ToDoList />);
 	addTask(list);
 
 	// click the edit button
@@ -63,7 +64,7 @@ it('can edit a todo', function() {
 
 // test removing a todo
 it('can delete a todo', function() {
-	const list = render(<TodoList />);
+	const list = render(<ToDoList />);
 	addTask(list);
 
 	fireEvent.click(list.getByText('Remove'));

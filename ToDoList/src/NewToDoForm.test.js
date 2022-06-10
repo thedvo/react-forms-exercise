@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import NewTodoForm from './NewTodoForm';
-import NewToDoForm from './NewTodoForm';
+import '@testing-library/jest-dom/extend-expect';
 
 // smoke test
 it('renders without crashing', function() {
@@ -18,9 +18,9 @@ it('matches snapshot', function() {
 it('runs the add task function on form submission', function() {
 	// https://jestjs.io/docs/mock-function-api
 	// Mock functions are also known as "spies", because they let you spy on the behavior of a function that is called indirectly by some other code, rather than only testing the output. You can create a mock function with jest.fn()
-	const mockAddTask = jest.fn();
-	const { getByText } = render(<NewTodoForm createTodo={mockAddTask} />);
-	const submitBtn = getByText('Add Task');
+	const mockAdd = jest.fn();
+	const { getByText } = render(<NewTodoForm createTodo={mockAdd} />);
+	const submitBtn = getByText('Add');
 	fireEvent.click(submitBtn);
-	expect(createMock).toHaveBeenCalled();
+	expect(mockAdd).toHaveBeenCalled();
 });

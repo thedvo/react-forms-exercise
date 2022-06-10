@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-// destructure addTask function passed down from parent component (ToDoList)
+// destructure addTask function from prop passed down from parent component (ToDoList)
 const NewToDoForm = ({ addTask }) => {
 	const [task, setTask] = useState('');
 
-	// handles inputs to the add task input and updates state
+	// handles any changes to the add task input and updates state
 	const handleChange = (e) => {
 		setTask(e.target.value);
 	};
